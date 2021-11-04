@@ -1,0 +1,19 @@
+.msg-input {
+    grid-area: msg-input;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+    grid-template-areas: "emoji type-a-message mic";
+    align-content: center;
+    background-color: #f0f0f0ff;
+}
+
+.message-box input[type="text"] {
+    width: 100%;
+    padding: 9px 12px 11px;
+    box-sizing: border-box;  
+    outline:none;
+    border-radius: 15px;
+    border:0;
+    font-size: .93rem;
+}
