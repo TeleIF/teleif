@@ -1,6 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from datetime import datetime
+from django.views.decorators.csrf import csrf_protect
 import json
 import pyrebase
 
@@ -21,13 +22,13 @@ database = firebase.database()
 def index(request):
     return render(request, 'index.html', {})
 
+@csrf_protect
 def post_message(request):
     contents = {}
 
     if request.method == 'POST':
-        contents["body"] = request.POST.get('body')
+        contents["body"] = request.POST.get('msg-body')
         contents["created_at"] = f'{datetime.now():%Y-%m-%d %H:%M:%S%z}'
+        database.child("Message").push(contents)
 
-    database.child("Message").push(contents)
-    
-    return render(request, 'index.html')
+    return render(request, 'index.html', {})

@@ -7,13 +7,3 @@
     align-content: center;
     background-color: #f0f0f0ff;
 }
-
-.message-box input[type="text"] {
-    width: 100%;
-    padding: 9px 12px 11px;
-    box-sizing: border-box;  
-    outline:none;
-    border-radius: 15px;
-    border:0;
-    font-size: .93rem;
-}

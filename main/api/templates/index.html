@@ -12,10 +12,10 @@
     <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
     
     <div class="msg-input">
-        <div class="message-box">
-            {% csrf_token %}
+        <form action="{%url 'post' %}" method="POST">{% csrf_token %}     
             <input type="text" name="msg-body" id="msg-body" placeholder="Type a message" autocomplete="off"><br>
-        </div>
+            <input type="submit">
+        </form>    
     </div>    
 
 </body>
