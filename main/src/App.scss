@@ -3,21 +3,20 @@
 }
 
 .App {
-    width: 100%;
-    height: 100%;
+    width: 100% - max-content;
+    height: available;
+    margin-top: 75px;
+    margin-bottom: 75px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: #117019;
+    overflow: visible;
 }
 
 .ChatList {
     width: var(--chat-list-width);
     height: 100%;
-}
-
-.Separator {
-    border-left: 6px solid white;
-    height: 100%;
-    position: absolute;
-    left: calc(var(--chat-list-width) + 10px);
-    top: 0;
+    border-right: 3px solid #0b4610ad;
 }
 
 .ChatPanel {
