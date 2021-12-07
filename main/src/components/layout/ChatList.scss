@@ -1,7 +1,10 @@
 .ChatList {
     background-color: #0a460f;
-    float: left;
+    display: flex;
     width: 300px;
     height: 100%;
     border-right: 3px solid #00680aad;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-self: left;
 }
