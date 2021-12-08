@@ -1,0 +1,27 @@
+::-webkit-scrollbar{
+    width: 6px;
+}
+
+::-webkit-scrollbar-track{
+    background: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background: grey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: darkgrey;
+}
+
+.ChatList {
+    background-color: #0a460f;
+    display: flex;
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid #00680aad;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-self: left;
+    overflow-y: scroll;
+}

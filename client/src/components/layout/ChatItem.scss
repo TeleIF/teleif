@@ -1,0 +1,45 @@
+.ChatItem {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 45px;
+    color: #dadada;
+
+}
+
+.ChatItem:hover {
+    background-color: #80808098;
+}
+
+.TopDialogue {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    top: 50%;
+}
+
+.BottomDialogue {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    bottom: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.Title {
+    font-weight: bold;
+}
+
+.Time {
+    float: right;
+    font-weight: 100;
+    color: grey
+}
+
+.LastMessage {
+    color: #ffffff85;
+}
