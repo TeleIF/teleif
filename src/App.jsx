@@ -1,10 +1,10 @@
 import ChatList from './components/layout/ChatList'
 import ChatPanel from './components/layout/ChatPanel'
-import { Container } from '@mui/material'
+import { Box } from '@mui/material'
 import './App.scss'
 
 export default () =>
-    <Container className="App">
+    <Box sx={{padding: '0', margin: '0', mx: 'auto', height: '100vh'}} className="App">
         <ChatList />
         <ChatPanel />
-    </Container>
+    </Box>
