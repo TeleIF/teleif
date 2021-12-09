@@ -18,15 +18,15 @@ export default () => {
     });
 
     return (
-        <Box sx={{height: '100%', width: '300px', justifySelf: 'left'}}>
-            <Stack divider={<Divider orientation='horizontal' flexItem/>} className='ChatList'>
+        <Box sx={{position:'relative', height: '100vh', width: '25rem', justifySelf: 'left', margin: '0'}}>
+            <Stack divider={<Divider orientation='horizontal' flexItem />} className='ChatList'>
                 {cList}
             </Stack>
-            {/* <Zoom in={true} timeout={{ enter: 500, exit: 500 }} unmountOnExit>
-                <Fab className='Fab'>
+            <Zoom in={true} timeout={{ enter: 500, exit: 500 }} unmountOnExit>
+                <Fab className="ContactsButton">
                     <PeopleIcon />
                 </Fab>
-            </Zoom> */}
+            </Zoom>
         </Box>
     );
 };

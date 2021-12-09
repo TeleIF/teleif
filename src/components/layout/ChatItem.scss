@@ -5,11 +5,11 @@
     width: available;
     height: 45px;
     color: #dadada;
+    z-index: 3;
 
-}
-
-.ChatItem:hover {
-    background-color: #80808098;
+    &:hover {
+        background-color: #80808098;
+    }
 }
 
 .TopDialogue {
