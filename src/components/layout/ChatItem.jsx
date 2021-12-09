@@ -1,17 +1,18 @@
 import './ChatItem.scss'
+import { Box, Container } from '@mui/material'
 
-export default props => 
-    <div className="ChatItem">
+export default (props) => 
+    <Box className="ChatItem">
         <p className="TopDialogue">
-            <span className="Title">
+            <Box component='span' className="Title">
                 { props.title }
-            </span>
-            <span className="Time">
+            </Box>
+            <Box component='span' className="Time">
                 { props.time }
-            </span>
+            </Box>
         </p>
         <p className="BottomDialogue">
-            <span className="LastUser">{ props.lastUser }: </span>
-            <span className="LastMessage">{ props.lastMessage }</span>
+            <Box component='span' className="LastUser">{ props.lastUser }: </Box>
+            <Box component='span' className="LastMessage">{ props.lastMessage }</Box>
         </p>
-    </div>
+    </Box>

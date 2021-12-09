@@ -1,9 +1,10 @@
 import './ChatPanel.scss'
+import { Box } from '@mui/material'
 
 export default () => {
     return (
-        <div className="ChatPanel">
+        <Box className="ChatPanel">
 
-        </div>
+        </Box>
     )
 }

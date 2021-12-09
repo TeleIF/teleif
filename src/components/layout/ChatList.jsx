@@ -1,7 +1,7 @@
 import ChatItem from './ChatItem';
 import './ChatList.scss';
 import groups from '../../data/groups';
-import { Fab, Zoom } from '@mui/material';
+import { Box, Divider, Stack, Fab, Zoom } from '@mui/material';
 import PeopleIcon from '@mui/icons-material/People';
 
 export default () => {
@@ -18,13 +18,15 @@ export default () => {
     });
 
     return (
-        <div className='ChatList'>
-            {cList}
-            <Zoom in={true} timeout={{ enter: 500, exit: 500 }} unmountOnExit>
-                <Fab>
+        <Box sx={{height: '100%', width: '300px', justifySelf: 'left'}}>
+            <Stack divider={<Divider orientation='horizontal' flexItem/>} className='ChatList'>
+                {cList}
+            </Stack>
+            {/* <Zoom in={true} timeout={{ enter: 500, exit: 500 }} unmountOnExit>
+                <Fab className='Fab'>
                     <PeopleIcon />
                 </Fab>
-            </Zoom>
-        </div>
+            </Zoom> */}
+        </Box>
     );
 };
