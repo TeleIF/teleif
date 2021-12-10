@@ -1,0 +1,16 @@
+.ChatList {
+    flex: 0.35;
+}
+
+.ChatListHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem;
+}
+
+.ChatListHeaderRight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 10vw;
+}

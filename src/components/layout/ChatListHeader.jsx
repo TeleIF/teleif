@@ -1,16 +1,26 @@
-import SearchIcon from '@mui/icons-material/Search';
+import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, iconButtonClasses } from '@mui/material';
+import './ChatListHeader.scss';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export default props => {
     return (
-        <Box sx={{height: '3rem', justifyItems: 'right'}}>
-            <IconButton>
-                <SearchIcon />
-            </IconButton>
-            <IconButton>
-                <MoreVertIcon />
-            </IconButton>
-        </Box>
+        <box className = 'ChatList'>
+            <Box className = "ChatListHeader">
+                <IconButton>
+                    <AccountCircleIcon />
+                </IconButton>
+                <box className = "ChatListHeaderRight">
+                    <IconButton>
+                        <ChatIcon />
+                    </IconButton>
+
+                    <IconButton>
+                        <MoreVertIcon />
+                    </IconButton>
+                </box>
+            </Box>
+        </box>
     )
 }
