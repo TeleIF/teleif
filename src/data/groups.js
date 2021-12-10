@@ -16,4 +16,6 @@ export default [
     {id: 4, title: 'Group 4', lastMessage: {sender: 'Everson', time: '11:30', message: 'zoio'}},
     {id: 4, title: 'Group 4', lastMessage: {sender: 'Everson', time: '11:30', message: 'zoio'}},
     {id: 4, title: 'Group 4', lastMessage: {sender: 'Everson', time: '11:30', message: 'zoio'}},
+    {id: 4, title: 'Group 4', lastMessage: {sender: 'Everson', time: '11:30', message: 'zoio'}},
+    {id: 4, title: 'Group 4', lastMessage: {sender: 'Everson', time: '11:30', message: 'zoio'}},
 ]

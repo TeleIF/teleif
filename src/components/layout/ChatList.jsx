@@ -1,8 +1,8 @@
 import ChatItem from './ChatItem';
+import ChatListHeader from './ChatListHeader'
 import './ChatList.scss';
 import groups from '../../data/groups';
-import { Box, Divider, Stack, Fab, Zoom } from '@mui/material';
-import PeopleIcon from '@mui/icons-material/People';
+import { Box, Divider, Stack } from '@mui/material';
 
 export default () => {
     const cList = groups.map((group) => {
@@ -18,15 +18,11 @@ export default () => {
     });
 
     return (
-        <Box sx={{position:'relative', height: '100vh', width: '25rem', justifySelf: 'left', margin: '0'}}>
-            <Stack divider={<Divider orientation='horizontal' flexItem />} className='ChatList'>
+        <Box sx={{position:'relative', height: 1, width: '25rem', justifySelf: 'left', margin: 0}}>
+            <ChatListHeader />
+            <Stack divider={<Divider sx={{ width: 0.85, margin: 'auto'}} orientation='horizontal' flexItem />} className='ChatList'>
                 {cList}
             </Stack>
-            <Zoom in={true} timeout={{ enter: 500, exit: 500 }} unmountOnExit>
-                <Fab className="ContactsButton">
-                    <PeopleIcon />
-                </Fab>
-            </Zoom>
         </Box>
     );
 };

@@ -4,7 +4,7 @@ import { Box, Grid } from '@mui/material'
 import './App.scss'
 
 export default () =>
-    <Box sx={{ padding: '0', margin: '0', mx: 'auto', height: '100vh' }} className="App">
+    <Box sx={{ width: 0.9, height: 1, padding: '0', my: '0', mx: 'auto' }} className="App">
         <Grid container spacing={0}>
             <Grid item>
                 <ChatList />

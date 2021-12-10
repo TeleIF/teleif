@@ -6,7 +6,7 @@ import { Box, Grid } from '@mui/material'
 
 export default () => {
     return (
-        <Box sx={{height: '100vh'}}>
+        <Box sx={{height: 1}}>
             <ChatPanelHeader />
             <ChatArea />
             <ChatInputArea />
