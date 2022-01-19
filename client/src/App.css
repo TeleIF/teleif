@@ -1,0 +1,11 @@
+@import 'react-chat-elements/dist/main.css';
+
+html, body {
+    font-family: sans-serif;
+    background-color: #cccccc;
+    max-height: 100vh;
+}
+
+.App {
+    height: 100vh
+}

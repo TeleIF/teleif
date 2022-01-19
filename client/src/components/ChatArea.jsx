@@ -1,6 +1,6 @@
+import React from 'react';
 import test from '../test'
-import './../App.scss'
-import 'react-chat-elements/dist/main.css';
+import './../App.css'
 import { Button, Input, MessageList } from 'react-chat-elements'
 
 const ChatArea = () => {
@@ -8,8 +8,8 @@ const ChatArea = () => {
         <>
             <MessageList
                 lockable={true}
-                toBottomHeight='100%'
-                // dataSource={test}
+                toBottomHeight={'100%'}
+                dataSource={ test }
             />
             <Input
                 placeholder="Type here..."
