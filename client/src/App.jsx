@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
-import ChatArea from './components/ChatArea'
-import { ChatList } from 'react-chat-elements'
+import Main from './components/Main'
+import Login from './components/Login'
 import io from 'socket.io-client'
 
 const ENDPOINT = 'http://localhost:8080'
@@ -9,8 +9,7 @@ const ENDPOINT = 'http://localhost:8080'
 const App = () => {
 
   const [socket, setSocket] = useState(null)
-  const [contacts, setContacts] = useState([])
-  const [search, setSearch] = useState('')
+  const [authState, setAuthState] = useState(false)
 
   useEffect(() => {
     const s = io(ENDPOINT)
@@ -18,25 +17,12 @@ const App = () => {
 
     return () => s.close()
   }, [setSocket])
-  
 
   return (
-    <div className='App'>
-      <div>
-        <div>
-
-        </div>
-        <div>
-          <ChatList
-            dataSource={ contacts }
-          />
-        </div>
-        <div>
-          <ChatArea socket={ socket } />
-        </div>
-      </div>
-    </div>
-  );
+    <>
+      {authState ? (<Main socket={socket} />) : (<Login socket={socket} />)}
+    </>
+  )
 }
 
 export default App;
