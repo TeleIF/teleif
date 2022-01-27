@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import test from '../test'
 import './../App.css'
 import { Button, Input, MessageList } from 'react-chat-elements'
 
-const ChatArea = () => {
+const ChatArea = ({ socket }) => {
+    const [messages, setMessages] = useState({})
     return (
         <>
+            <div>
+                {/* header aqui */}
+            </div>
             <MessageList
                 lockable={true}
                 toBottomHeight={'100%'}
