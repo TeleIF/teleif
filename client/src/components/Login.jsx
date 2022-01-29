@@ -5,7 +5,6 @@ const Login = ({ socket }) => {
     const [username, setUsername] = useState('')
     const [domain, setDomain] = useState('ifsc.edu.br')
     const [password, setPassword] = useState('')
-    const [disabled, setDisabled] = useState(false)
 
     const stringToHash = (password) => {
 
