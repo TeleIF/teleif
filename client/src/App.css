@@ -10,3 +10,12 @@ html, body {
 .App {
     height: 100vh
 }
+
+::placeholder {
+    font-style: italic;
+}
+
+.btn:disabled {
+    background-color: red;
+    border: red
+}

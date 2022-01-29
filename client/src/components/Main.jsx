@@ -1,3 +1,4 @@
+import './../App.css'
 import React from 'react'
 import ChatArea from './ChatArea'
 import Sidebar from './Sidebar'

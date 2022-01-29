@@ -15,7 +15,16 @@ const App = () => {
     const s = io(ENDPOINT)
     setSocket(s)
 
-    return () => s.close()
+    s.on("login", (res) => {
+      if (res) {
+        setAuthState(res)
+      }
+    })
+
+    return () => {
+      s.removeAllListeners("login")
+      s.close()
+    }
   }, [setSocket])
 
   return (
