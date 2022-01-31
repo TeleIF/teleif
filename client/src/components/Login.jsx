@@ -4,7 +4,7 @@ import { Tabs, Form, Tab, InputGroup, Button, Modal } from 'react-bootstrap'
 
 const Login = ({ socket }) => {
     const [loginFail, setLoginFail] = useState(false)
-    const [signupFail, setSignupFail] = useState(true)
+    const [signupFail, setSignupFail] = useState(false)
 
     const [username, setUsername] = useState('')
     const [domain, setDomain] = useState('ifsc.edu.br')
