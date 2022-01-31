@@ -10,13 +10,13 @@ const ENDPOINT = 'http://localhost:8080'
 const App = () => {
 
   const [socket, setSocket] = useState(null)
-  const [authState, setAuthState] = useState(false)
+  const [authState, setAuthState] = useState(true)
 
   useEffect(() => {
     const s = io(ENDPOINT)
     setSocket(s)
 
-    s.on("login", (res) => {
+    s.on("login-success", (res) => {
       if (res) {
         setAuthState(res)
       }
