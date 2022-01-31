@@ -2,6 +2,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react'
 import Main from './components/Main'
 import Login from './components/Login'
+import { Container } from 'react-bootstrap'
 import io from 'socket.io-client'
 
 const ENDPOINT = 'http://localhost:8080'
@@ -28,9 +29,9 @@ const App = () => {
   }, [setSocket])
 
   return (
-    <>
+    <Container>
       {authState ? (<Main socket={socket} />) : (<Login socket={socket} />)}
-    </>
+    </Container>
   )
 }
 

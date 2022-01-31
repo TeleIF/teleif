@@ -33,7 +33,7 @@ const Sidebar = ({ socket }) => {
                         value={searchFilter}
                         placeholder="Pesquise um contato"
                         onChange={(e) => {
-                            setSearchFilter(e.currentTarget.value)
+                            setSearchFilter(e.target.value)
                         }}
                     >
                     </input>
