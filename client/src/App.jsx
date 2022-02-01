@@ -14,6 +14,7 @@ const App = () => {
 
   useEffect(() => {
     const s = io(ENDPOINT)
+
     setSocket(s)
 
     s.on("login-success", (res) => {
@@ -29,7 +30,7 @@ const App = () => {
   }, [setSocket])
 
   return (
-    <Container>
+    <Container className="h-100 w-100 mx-auto">
       {authState ? (<Main socket={socket} />) : (<Login socket={socket} />)}
     </Container>
   )

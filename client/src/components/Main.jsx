@@ -2,17 +2,20 @@ import './../App.css'
 import React from 'react'
 import ChatArea from './ChatArea'
 import Sidebar from './Sidebar'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const Main = ({ socket }) => {
     return (
-        <div className='row h-100 my-auto'>
-            <div className='col-4'>
-                <Sidebar socket={socket} />
-            </div>
-            <div className='col-sm-8'> 
-                <ChatArea socket={socket} />
-            </div>
-        </div>
+        <Container className='h-100 my-auto' style={{ height: '100vh' }}>
+            <Row>
+                <Col>
+                    <Sidebar socket={socket} />
+                </Col>
+                <Col>
+                    <ChatArea socket={socket} />
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
