@@ -24,6 +24,7 @@ html, body {
 .wrapper {
     margin: 0 !important;
     height: 100vh !important;
+    justify-content: space-between;
 }
 
 .sidebar {
@@ -35,4 +36,21 @@ html, body {
 
 .chat-area {
     height: 100vh !important;
+    max-height: 100vh !important;
+    max-width: calc(100vw - 20%)
+}
+
+.chat-area-header {
+    height: 40px;
+    background-color: lime
+}
+
+.input-area {
+    background-color: rgba(128, 128, 128, 0.295);
+    height: 60px
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
 }

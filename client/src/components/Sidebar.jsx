@@ -3,26 +3,24 @@ import React, { useState, useEffect } from "react";
 import { ChatList } from "react-chat-elements";
 
 const Sidebar = () => {
-    const [contacts, setContacts] = useState([
+    const [chats, setChats] = useState([
         {
-            avatar: "https://c.tenor.com/cWsK6nwdcHYAAAAM/bing-chi-ling-alex-mei-bing.gif",
+            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
             alt: "John Xina",
             title: "John Xina",
             subtitle: "Bing Chilling🥶🍦",
             date: new Date(),
-            unread: 1,
         },
         {
-            avatar: "https://c.tenor.com/AceFzoOKEGIAAAAC/spongebob-spongebob-cry.gif",
+            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
             alt: "Reactjs",
             title: "J",
             subtitle: "😢😢😢",
             date: new Date(),
-            unread: 23,
         },
     ]);
 
-    return <ChatList dataSource={contacts} className='sidebar' />;
+    return <ChatList dataSource={chats} />;
 };
 
 export default Sidebar;
