@@ -20,7 +20,15 @@ const Sidebar = () => {
         },
     ]);
 
-    return <ChatList dataSource={chats} />;
+    return (<>
+        <ChatList dataSource={chats} className='h-75' />
+        <div>
+            <input>
+            
+            </input>
+            <button>+</button>
+        </div>
+    </>);
 };
 
 export default Sidebar;

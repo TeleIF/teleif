@@ -9,13 +9,16 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [domain, setDomain] = useState('ifsc.edu.br')
     const [password, setPassword] = useState('')
-    const [keepLogin, setKeepLogin] = useState(false)
 
     const handleLogin = (e) => {
+        const email = username + '@' + domain
+
         e.preventDefault()
     }
 
     const handleSignup = (e) => {
+        const email = username + '@' + domain
+        
         e.preventDefault()
     }
 
@@ -37,7 +40,6 @@ const Login = () => {
                             <Form.Label>Senha:</Form.Label>
                             <Form.Control type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
                         </Form.Group>
-                        <Form.Check type="checkbox" id="keep-login" label="Manter login" className="mb-2" onChange={() => setKeepLogin(!keepLogin)} />
                         <Button variant="primary" type="submit" onClick={(e) => handleLogin(e)} disabled={!(username && password)}>Entrar</Button>
                     </Form>
                 </Tab>

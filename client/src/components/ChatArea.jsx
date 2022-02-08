@@ -9,23 +9,24 @@ const ChatArea = () => {
     const fileRef = useRef(null);
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState("");
-    const [canSend, setCanSend] = useState(true)
+    const [canSend, setCanSend] = useState(true);
 
     const handleFile = (e) => {
         setFile(e.target.files[0]);
     };
 
     const handleSubmit = (e) => {
-        fileRef.current.value = ""
-        setFile(null)
-        setMessage('')
+        // TODO: logica de db
+
+        fileRef.current.value = "";
+        setFile(null);
+        setMessage("");
     };
 
     useEffect(() => {
-        if ((file == null) && !message) setCanSend(true)
-        else setCanSend(false)
-
-    }, [file, message])
+        if (file == null && !message) setCanSend(true);
+        else setCanSend(false);
+    }, [file, message]);
 
     return (
         <div className="chat-area">
