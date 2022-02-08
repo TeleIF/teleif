@@ -3,35 +3,15 @@ import React, { useState, useEffect } from 'react'
 import Main from './components/Main'
 import Login from './components/Login'
 import { Container } from 'react-bootstrap'
-import io from 'socket.io-client'
-
-const ENDPOINT = 'http://localhost:8080'
 
 const App = () => {
 
-  const [socket, setSocket] = useState(null)
+  const [user, setUser] = useState({})
   const [authState, setAuthState] = useState(true)
 
-  useEffect(() => {
-    const s = io(ENDPOINT)
-
-    setSocket(s)
-
-    s.on("login-success", (res) => {
-      if (res) {
-        setAuthState(res)
-      }
-    })
-
-    return () => {
-      s.removeAllListeners("login")
-      s.close()
-    }
-  }, [setSocket])
-
   return (
-    <Container className="h-100 w-100 mx-auto">
-      {authState ? (<Main socket={socket} />) : (<Login socket={socket} />)}
+    <Container className="h-100 w-100 p-0">
+      {authState ? (<Main />) : (<Login />)}
     </Container>
   )
 }

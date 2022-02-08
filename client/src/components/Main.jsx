@@ -1,22 +1,16 @@
-import './../App.css'
-import React from 'react'
-import ChatArea from './ChatArea'
-import Sidebar from './Sidebar'
-import { Col, Container, Row } from 'react-bootstrap'
+import "./../App.css";
+import React from "react";
+import ChatArea from "./ChatArea";
+import Sidebar from "./Sidebar";
+import { Container } from "react-bootstrap";
 
-const Main = ({ socket }) => {
+const Main = () => {
     return (
-        <Container className='h-100 my-auto' style={{ height: '100vh' }}>
-            <Row>
-                <Col>
-                    <Sidebar socket={socket} />
-                </Col>
-                <Col>
-                    <ChatArea socket={socket} />
-                </Col>
-            </Row>
-        </Container>
-    )
-}
+        <div className="wrapper">
+            <Sidebar />
+            <ChatArea />
+        </div>
+    );
+};
 
-export default Main
+export default Main;

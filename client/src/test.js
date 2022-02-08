@@ -1,11 +1,5 @@
 const test = [
 	{
-		text: "libero mauris, aliquam eu, accumsan",
-		position: "right",
-		type: "text",
-		date: new Date()
-	},
-	{
 		text: "lacinia orci,",
 		position: "left",
 		type: "text",

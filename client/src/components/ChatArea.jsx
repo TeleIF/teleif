@@ -3,10 +3,10 @@ import test from '../test'
 import './../App.css'
 import { Button, Input, MessageList } from 'react-chat-elements'
 
-const ChatArea = ({ socket }) => {
-    const [messages, setMessages] = useState({})
+const ChatArea = () => {
+
     return (
-        <>
+        <div className="chat-area">
             <div>
                 {/* header aqui */}
             </div>
@@ -25,7 +25,7 @@ const ChatArea = ({ socket }) => {
                         backgroundColor='black'
                         text='Send' />
                 } />
-        </>
+        </div>
     )
 }
 

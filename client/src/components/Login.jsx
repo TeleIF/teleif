@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './../App.css'
 import { Tabs, Form, Tab, InputGroup, Button, Modal } from 'react-bootstrap'
 
-const Login = ({ socket }) => {
+const Login = () => {
     const [loginFail, setLoginFail] = useState(false)
     const [signupFail, setSignupFail] = useState(false)
 
@@ -11,48 +11,13 @@ const Login = ({ socket }) => {
     const [password, setPassword] = useState('')
     const [keepLogin, setKeepLogin] = useState(false)
 
-    const stringToHash = (password) => {
-        let hash = 0
-
-        if (password.length === 0) return hash
-
-        for (let i = 0; i < password.length; i++) {
-            const char = password.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash;
-        }
-
-        return hash;
-    }
-
     const handleLogin = (e) => {
         e.preventDefault()
-        socket.emit('handle-login', {
-            username: username,
-            domain: domain,
-            password: stringToHash(password),
-            keepLogin: keepLogin
-        })
     }
 
     const handleSignup = (e) => {
         e.preventDefault()
-        socket.emit('handle-signup', {
-            username: username,
-            domain: domain,
-            password: stringToHash(password)
-        })
     }
-
-    useEffect(() => {
-        socket.on('login-fail', setLoginFail(true))
-        socket.on('signup-fail', setSignupFail(true))
-
-        return () => {
-            socket.off('login-fail', setLoginFail(true))
-            socket.off('signup-fail', setSignupFail(true))
-        }
-    }, [socket])
 
     return (
         <>
