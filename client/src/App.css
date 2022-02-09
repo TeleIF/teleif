@@ -9,7 +9,8 @@
 html, body {
     font-family: sans-serif;
     background-color: #cccccc;
-    overflow: hidden
+    overflow: hidden;
+    background-color: rgba(0, 128, 0, 0.178);
 }
 
 ::placeholder {
@@ -29,9 +30,8 @@ html, body {
 
 .sidebar {
     height: 100vh !important;
-    width: 20%;
     min-width: 390px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.623) !important;
 }
 
 .chat-area {
@@ -41,8 +41,8 @@ html, body {
 }
 
 .chat-area-header {
-    height: 40px;
-    background-color: lime
+    height: 50px;
+    background-color: rgba(0, 105, 0, 0.685)
 }
 
 .input-area {
@@ -53,4 +53,8 @@ html, body {
 ::-webkit-scrollbar {
     width: 0;
     background: transparent;
+}
+
+.rce-mbox-text:after {
+    content: "\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0" !important;
 }

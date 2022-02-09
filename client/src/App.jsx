@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap'
 const App = () => {
 
   const [user, setUser] = useState({})
-  const [authState, setAuthState] = useState()
+  const [authState, setAuthState] = useState(true)
 
   return (
     <Container className="h-100 w-100 p-0">

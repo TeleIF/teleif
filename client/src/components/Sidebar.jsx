@@ -1,8 +1,10 @@
 import "./../App.css";
 import React, { useState, useEffect } from "react";
 import { ChatList } from "react-chat-elements";
+import { PlusCircleFill as Plus } from "react-bootstrap-icons";
 
 const Sidebar = () => {
+    const [member, setMember] = useState("");
     const [chats, setChats] = useState([
         {
             avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
@@ -20,15 +22,27 @@ const Sidebar = () => {
         },
     ]);
 
-    return (<>
-        <ChatList dataSource={chats} className='h-75' />
-        <div>
-            <input>
-            
-            </input>
-            <button>+</button>
+    return (
+        <div className="sidebar">
+            <ChatList dataSource={chats} className="h-75" />
+            <div className='mx-3'>
+                <div className="input-group">
+                    <input
+                        type="text"
+                        placeholder="Digite um usuário para iniciar uma conversa..."
+                        value={member}
+                        onChange={(e) => {
+                            setMember(e.target.value);
+                        }}
+                        className="form-control"
+                    />
+                    <button className="btn btn-success">
+                        <Plus />
+                    </button>
+                </div>
+            </div>
         </div>
-    </>);
+    );
 };
 
 export default Sidebar;
