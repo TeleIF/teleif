@@ -4,10 +4,10 @@ import Main from './components/Main'
 import Login from './components/Login'
 import { Container } from 'react-bootstrap'
 
-const App = () => {
+function App() {
 
   const [user, setUser] = useState({})
-  const [authState, setAuthState] = useState(true)
+  const [authState, setAuthState] = useState(false)
 
   return (
     <Container className="h-100 w-100 p-0">
