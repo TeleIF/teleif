@@ -1,10 +1,17 @@
 import "./../App.css";
-import React from "react";
+import {useEffect} from "react";
+import {useAuthValue} from '../AuthContext'
 import ChatArea from "./ChatArea";
 import Sidebar from "./Sidebar";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Main = () => {
+    const currentUser = useAuthValue();
+
+    useEffect(() => {
+        console.log(currentUser)
+    }, [])
+
     return (
         // <div className="wrapper">
         //     <Sidebar />

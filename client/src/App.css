@@ -55,7 +55,7 @@ html, body {
 }
 
 .rce-mbox-text:after {
-    content: "\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0" !important;
+    content: "\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0" !important;
 }
 
 .list {
@@ -64,4 +64,13 @@ html, body {
 
 .mbox {
     height: calc(100% - 100px)
+}
+
+.sidebar {
+    height: 50px;
+    width: 100%
+}
+
+.login-page {
+    width: 35%
 }

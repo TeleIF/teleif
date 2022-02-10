@@ -1,95 +1,27 @@
 import "./../App.css";
 import React, { useState, useEffect } from "react";
+import {useAuthValue} from '../AuthContext'
 import { ChatList } from "react-chat-elements";
-import { PlusCircleFill as Plus } from "react-bootstrap-icons";
+import { getAuth, signOut } from "firebase/auth";
+import {
+    PlusCircleFill as Plus,
+    DoorOpenFill as Door,
+} from "react-bootstrap-icons";
 
 const Sidebar = () => {
+    const auth = getAuth();
     const [member, setMember] = useState("");
-    const [chats, setChats] = useState([
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "John Xina",
-            title: "John Xina",
-            subtitle: "Bing Chilling🥶🍦",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        {
-            avatar: "https://static.vecteezy.com/system/resources/thumbnails/000/550/535/small/user_icon_007.jpg",
-            alt: "Reactjs",
-            title: "J",
-            subtitle: "😢😢😢",
-            date: new Date(),
-        },
-        
-    ]);
+    const [chats, setChats] = useState([]);
 
     return (
         <div className="sidebar">
-            <div className="py-2">
-                <div className="mx-3 mh-50">
+            <div>
+                <div className='sidebar-header p-2'>
+                    <button className="btn btn-primary" onClick={() => signOut(auth)}>
+                        <Door />
+                    </button>
+                </div>
+                <div className="mx-3 d-flex pb-2">
                     <div className="input-group">
                         <input
                             type="text"
@@ -106,8 +38,11 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-            <div className='h-75'>
-                <ChatList dataSource={chats} />
+            <div className="h-75">
+                <ChatList
+                    dataSource={chats}
+                    onClick={(res) => console.log(res)}
+                />
             </div>
         </div>
     );
