@@ -158,7 +158,7 @@ const Login = () => {
 
             <Modal
                 show={loginFail}
-                className="w-25"
+                className="w-25 modals"
                 onHide={() => setLoginFail(false)}
                 keyboard={false}
             >
@@ -173,7 +173,7 @@ const Login = () => {
 
             <Modal
                 show={signupFail}
-                className="w-25"
+                className="w-25 display-block modals"
                 onHide={() => setSignupFail(false)}
                 keyboard={false}
             >
@@ -185,6 +185,7 @@ const Login = () => {
 
             <Modal
                 show={emailVerification}
+                className="w-25 display-block modals"
                 onHide={() => setEmailVerification(false)}
                 backdrop="static"
                 keyboard={false}
@@ -193,8 +194,7 @@ const Login = () => {
                     <Modal.Title>Verifique seu email</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Um email de verificação foi enviado para
-                    {currentUser?.email}
+                    Um email de verificação foi enviado para <strong>{auth.currentUser?.email}</strong>
                 </Modal.Body>
             </Modal>
         </Container>

@@ -1,12 +1,13 @@
-@import 'react-chat-elements/dist/main.css';
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "react-chat-elements/dist/main.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 * {
     max-height: 100vh;
     max-width: 100vw !important;
 }
 
-html, body {
+html,
+body {
     font-family: sans-serif;
     overflow: hidden;
     background-color: rgba(0, 128, 0, 0.178);
@@ -18,7 +19,7 @@ html, body {
 
 .btn:disabled {
     background-color: red;
-    border: red
+    border: red;
 }
 
 .wrapper {
@@ -36,17 +37,17 @@ html, body {
 .chat-area {
     height: 100vh !important;
     max-height: 100vh !important;
-    max-width: calc(100vw - 20%)
+    max-width: calc(100vw - 20%);
 }
 
 .chat-area-header {
     height: 50px;
-    background-color: rgba(0, 105, 0, 0.685)
+    background-color: rgba(0, 105, 0, 0.685);
 }
 
 .input-area {
     background-color: rgba(0, 105, 0, 0.685);
-    height: 50px
+    height: 50px;
 }
 
 ::-webkit-scrollbar {
@@ -59,18 +60,25 @@ html, body {
 }
 
 .list {
-    max-height: calc(100vh - 50px)
+    max-height: calc(100vh - 50px);
 }
 
 .mbox {
-    height: calc(100% - 100px)
+    height: calc(100% - 100px);
 }
 
 .sidebar {
     height: 50px;
-    width: 100%
+    width: 100%;
 }
 
 .login-page {
-    width: 35%
+    width: 35%;
+}
+
+.modals {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
