@@ -3,6 +3,7 @@ const test = [
 		text: "lacinia orci,",
 		position: "left",
 		type: "text",
+		title: 'zoio',
 		date: new Date()
 	},
 	{

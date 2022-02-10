@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './../App.css'
-import { Tabs, Form, Tab, InputGroup, Button, Modal } from 'react-bootstrap'
+import { Tabs, Form, Tab, InputGroup, Button, Modal, Container } from 'react-bootstrap'
 
 const Login = () => {
     const [loginFail, setLoginFail] = useState(false)
@@ -23,8 +23,8 @@ const Login = () => {
     }
 
     return (
-        <>
-            <Tabs defaultActiveKey="login" id="auth-tabs" className="mb-3 w-100 h-100 mx-auto">
+        <Container className='mx-auto'>
+            <Tabs defaultActiveKey="login" id="auth-tabs" className="mb-3">
                 <Tab eventKey="login" title="Login">
                     <Form>
                         <Form.Label htmlFor="username">Endereço de email:</Form.Label>
@@ -80,7 +80,7 @@ const Login = () => {
                     Email já cadastrado.
                 </Modal.Body>
             </Modal>
-        </>
+        </Container>
     )
 }
 

@@ -2,13 +2,12 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 * {
-    max-height: 100vh !important;
+    max-height: 100vh;
     max-width: 100vw !important;
 }
 
 html, body {
     font-family: sans-serif;
-    background-color: #cccccc;
     overflow: hidden;
     background-color: rgba(0, 128, 0, 0.178);
 }
@@ -46,8 +45,8 @@ html, body {
 }
 
 .input-area {
-    background-color: rgba(128, 128, 128, 0.295);
-    height: 60px
+    background-color: rgba(0, 105, 0, 0.685);
+    height: 50px
 }
 
 ::-webkit-scrollbar {
@@ -56,5 +55,13 @@ html, body {
 }
 
 .rce-mbox-text:after {
-    content: "\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0" !important;
+    content: "\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0\A0" !important;
+}
+
+.list {
+    max-height: calc(100vh - 50px)
+}
+
+.mbox {
+    height: calc(100% - 100px)
 }
