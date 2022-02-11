@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBhV5bhggGk5shwwBpRtkmvGU4IM17f9nQ",
@@ -9,8 +11,10 @@ const firebaseConfig = {
     storageBucket: "teleif-4f42f.appspot.com",
     messagingSenderId: "913167733686",
     appId: "1:913167733686:web:4292101741aca8fd306717",
-    measurementId: "G-JXDG9J3RG0"
+    measurementId: "G-JXDG9J3RG0",
 };
 
 const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 export const auth = getAuth(app);

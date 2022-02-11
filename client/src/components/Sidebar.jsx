@@ -10,13 +10,14 @@ import {
 
 const Sidebar = () => {
     const auth = getAuth();
-    const [member, setMember] = useState("");
+    const [title, setTitle] = useState("");
     const [chats, setChats] = useState([]);
+    const [currentChat, setCurrentChat] = useState({});
 
     return (
         <div className="sidebar">
             <div>
-                <div className='sidebar-header p-2'>
+                <div className='sidebar-header p-2 mb-2'>
                     <button className="btn btn-primary" onClick={() => signOut(auth)}>
                         <Door />
                     </button>
@@ -25,15 +26,15 @@ const Sidebar = () => {
                     <div className="input-group">
                         <input
                             type="text"
-                            placeholder="Digite um usuário para iniciar uma conversa..."
-                            value={member}
+                            placeholder="Nome do grupo..."
+                            value={title}
                             onChange={(e) => {
-                                setMember(e.target.value);
+                                setTitle(e.target.value);
                             }}
                             className="form-control"
                         />
                         <button className="btn btn-success">
-                            <Plus />
+                            Criar <Plus />
                         </button>
                     </div>
                 </div>

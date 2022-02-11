@@ -13,10 +13,6 @@ const Main = () => {
     }, [])
 
     return (
-        // <div className="wrapper">
-        //     <Sidebar />
-        //     <ChatArea />
-        // </div>
         <Container className="p-0">
             <Row className='m-0'>
                 <Col className="p-0">

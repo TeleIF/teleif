@@ -67,9 +67,10 @@ body {
     height: calc(100% - 100px);
 }
 
-.sidebar {
+.sidebar-header {
     height: 50px;
     width: 100%;
+    background-color: rgba(0, 105, 0, 0.685);
 }
 
 .login-page {

@@ -2,7 +2,14 @@ const test = [
 	{
 		text: "lacinia orci,",
 		position: "left",
-		type: "text",
+		type: "photo",
+		data: {
+			uri: 'https://firebasestorage.googleapis.com/v0/b/teleif-4f42f.appspot.com/o/iu.png?alt=media&token=049aa23d-0063-46a4-a110-45f828b841d7',
+			status: {
+				click: true,
+				loading: 0
+			}
+		},
 		title: 'zoio',
 		date: new Date()
 	},
@@ -592,7 +599,7 @@ const test = [
 		text: "accumsan convallis,",
 		position: "left",
 		type: "text",
-		date: new Date()
+		date: new Date(),
 	}
 ]
 

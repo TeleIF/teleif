@@ -13,8 +13,13 @@ const ChatArea = () => {
     const fileRef = useRef(null);
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState("");
+    const [messageList, setMessageList] = useState(test)
     const [member, setMember] = useState("");
     const [canSend, setCanSend] = useState(true);
+
+    const scrollToBottom = () => {
+        document.querySelector('.rce-mlist').scrollTop = document.querySelector('.rce-mlist').scrollHeight
+    }
 
     const handleFile = (e) => {
         setFile(e.target.files[0]);
@@ -33,12 +38,16 @@ const ChatArea = () => {
         else setCanSend(false);
     }, [file, message]);
 
+    useEffect(() => {
+        scrollToBottom()
+    }, [messageList]);
+
     return (
         <div className="chat-area vh-100 mh-100">
             <div className="chat-area-header w-100">
                 <div className="input-group mx-auto pt-1 w-25">
                     <input
-                        placeholder="Digite um usuário para adicionar à conversa..."
+                        placeholder="Nome de usuário..."
                         type="text"
                         value={member}
                         onChange={(e) => {
@@ -47,14 +56,17 @@ const ChatArea = () => {
                         className="form-control"
                     />
                     <button className="btn btn-primary">
-                        <Plus />
+                        Adicionar <Plus />
                     </button>
                 </div>
             </div>
-            <MessageList lockable={true} dataSource={test} className="mbox" />
-            <footer
-                className="text-center text-white"
-            >
+            <MessageList
+                lockable={true}
+                dataSource={test}
+                toBottomHeight='100%'
+                className="mbox"
+            />
+            <footer className="text-center text-white">
                 <div className="input-area w-100">
                     <div className="mx-auto w-75 pt-1">
                         <div className="input-group">
