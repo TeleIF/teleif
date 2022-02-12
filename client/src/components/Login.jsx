@@ -13,9 +13,9 @@ import {
     createUserWithEmailAndPassword,
     sendEmailVerification,
     signInWithEmailAndPassword,
+    updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase-config";
-import { useAuthValue } from "../AuthContext";
 
 const Login = () => {
     const [loginFail, setLoginFail] = useState(false);
@@ -26,17 +26,17 @@ const Login = () => {
     const [domain, setDomain] = useState("ifsc.edu.br");
     const [password, setPassword] = useState("");
 
-    const currentUser = useAuthValue();
-
     const handleLogin = (e) => {
         e.preventDefault();
         const email = username + "@" + domain;
 
-        signInWithEmailAndPassword(auth, email, password).then(() => {
-            setUsername("");
-            setPassword("");
-            setDomain("ifsc.edu.br");
-        }).catch(() => setLoginFail(true));
+        signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                setUsername("");
+                setPassword("");
+                setDomain("ifsc.edu.br");
+            })
+            .catch(() => setLoginFail(true));
     };
 
     const handleSignup = (e) => {
@@ -45,6 +45,7 @@ const Login = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(() => {
+                updateProfile(auth.currentUser, { displayName: username });
                 sendEmailVerification(auth.currentUser)
                     .then(() => {
                         setEmailVerification(true);
@@ -194,7 +195,8 @@ const Login = () => {
                     <Modal.Title>Verifique seu email</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Um email de verificação foi enviado para <strong>{auth.currentUser?.email}</strong>
+                    Um email de verificação foi enviado para{" "}
+                    <strong>{auth.currentUser?.email}</strong>
                 </Modal.Body>
             </Modal>
         </Container>

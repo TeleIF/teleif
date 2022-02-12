@@ -1,36 +1,107 @@
 import React, { useEffect, useState, useRef } from "react";
-import test from "../test";
 import "./../App.css";
 import { MessageList } from "react-chat-elements";
-import { Container } from "react-bootstrap";
 import {
     SendFill as Send,
     Paperclip as Clip,
     PlusCircleFill as Plus,
 } from "react-bootstrap-icons";
+import { auth, db, storage } from "../firebase-config";
+import {
+    updateDoc,
+    collection,
+    doc,
+    arrayUnion,
+    getDoc,
+    getDocs,
+} from "firebase/firestore";
+import { useChatValue } from "../ChatContext";
 
 const ChatArea = () => {
+    console.log(auth.currentUser?.displayName)
+    const chatId = useChatValue();
+    const chatsRef = doc(db, "chats", chatId);
     const fileRef = useRef(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState("");
-    const [messageList, setMessageList] = useState(test)
+    const [messageList, setMessageList] = useState([]);
     const [member, setMember] = useState("");
     const [canSend, setCanSend] = useState(true);
 
     const scrollToBottom = () => {
-        document.querySelector('.rce-mlist').scrollTop = document.querySelector('.rce-mlist').scrollHeight
-    }
+        document.querySelector(".rce-mlist").scrollTop =
+            document.querySelector(".rce-mlist").scrollHeight;
+    };
 
     const handleFile = (e) => {
         setFile(e.target.files[0]);
     };
 
-    const handleSubmit = (e) => {
-        // TODO: logica de db
-
+    const handleSubmit = () => {
+        if (!file && message) {
+            updateDoc(chatsRef, {
+                messages: arrayUnion({
+                    sender: auth.currentUser?.uid,
+                    text: message,
+                    position: "left",
+                    type: "text",
+                    title: auth.currentUser?.email.split("@")[0],
+                    date: new Date(),
+                }),
+            });
+        } else if (file && message) {
+            updateDoc(chatsRef, {
+                messages: arrayUnion({
+                    sender: auth.currentUser?.uid,
+                    text: message,
+                    position: "left",
+                    type: "photo",
+                    title: auth.currentUser?.email.split("@")[0],
+                    date: new Date(),
+                    data: {
+                        status: {
+                            loading: 100,
+                            click: true,
+                        },
+                        uri: "",
+                    },
+                }),
+            });
+        } else {
+            updateDoc(chatsRef, {
+                messages: arrayUnion({
+                    sender: auth.currentUser?.uid,
+                    position: "left",
+                    type: "photo",
+                    title: auth.currentUser?.email.split("@")[0],
+                    date: new Date(),
+                    data: {
+                        status: {
+                            loading: 100,
+                            click: true,
+                        },
+                        uri: "",
+                    },
+                }),
+            });
+        }
+        setIsLoading(true);
         fileRef.current.value = "";
         setFile(null);
         setMessage("");
+    };
+
+    const handleAdd = () => {
+        updateDoc(chatsRef, {members: arrayUnion(member)})
+
+        setMember('')
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter" && canSend) {
+            handleSubmit();
+        }
     };
 
     useEffect(() => {
@@ -39,8 +110,29 @@ const ChatArea = () => {
     }, [file, message]);
 
     useEffect(() => {
-        scrollToBottom()
+        scrollToBottom();
     }, [messageList]);
+
+    useEffect(() => {
+        getDoc(chatsRef).then((res) => {
+            const list = []
+            res.data().messages.map(x => {
+                console.log(x)
+                
+                if (auth.currentUser?.uid === x.sender) {
+                    list.push({
+                        ...x,
+                        position: 'right'
+                    })
+                } else {
+                    list.push(x)
+                }
+            })
+            setMessageList(list)
+        });
+        alert('hi')
+        setIsLoading(false);
+    }, [isLoading]);
 
     return (
         <div className="chat-area vh-100 mh-100">
@@ -55,15 +147,15 @@ const ChatArea = () => {
                         }}
                         className="form-control"
                     />
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={handleAdd}>
                         Adicionar <Plus />
                     </button>
                 </div>
             </div>
             <MessageList
                 lockable={true}
-                dataSource={test}
-                toBottomHeight='100%'
+                dataSource={messageList}
+                toBottomHeight="100%"
                 className="mbox"
             />
             <footer className="text-center text-white">
@@ -95,6 +187,7 @@ const ChatArea = () => {
                                 type="text"
                                 className="form-control"
                                 value={message}
+                                onKeyPress={handleKeyDown}
                                 onChange={(e) => {
                                     setMessage(e.target.value);
                                 }}
