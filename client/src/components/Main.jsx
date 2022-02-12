@@ -12,10 +12,10 @@ const Main = () => {
     return (
         <Container className="p-0">
             <Row className="m-0">
-                <Col className="p-0">
+                <Col xs={3} md={4} className="p-0">
                     <Sidebar />
                 </Col>
-                <Col xs={9} className="p-0">
+                <Col xs={9} md={8} className="p-0">
                     {chatId ? <ChatArea /> : null}
                 </Col>
             </Row>

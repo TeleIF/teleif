@@ -15,10 +15,13 @@ import {
     PlusCircleFill as Plus,
     DoorOpenFill as Door,
 } from "react-bootstrap-icons";
-import { useGetChat } from "../ChatContext";
+import { useGetChat, useLoadChat, useSetLoadChat } from "../ChatContext";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const Sidebar = () => {
     const auth = getAuth();
+    const chatLoading = useLoadChat();
+    const setChatLoading = useSetLoadChat();
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState("");
     const [chats, setChats] = useState([]);
@@ -27,8 +30,9 @@ const Sidebar = () => {
         chatsRef,
         where("members", "array-contains", auth.currentUser?.displayName)
     );
-    const setChatId = useGetChat()
-    
+    const setChatId = useGetChat();
+    const [chatSnapshot] = useCollection(q);
+
     useEffect(() => {
         const qs = getDocs(q);
         let list = [];
@@ -42,11 +46,12 @@ const Sidebar = () => {
 
                 return null;
             });
-            list.sort((a, b) => new Date(b.date) - new Date(a.date))
+            list.sort((a, b) => new Date(b.date) - new Date(a.date));
             setChats(list);
         });
+        setChatLoading(false);
         setIsLoading(false);
-    }, [isLoading]);
+    }, [isLoading, chatLoading, chatSnapshot]);
 
     const createChat = () => {
         if (title) {
@@ -64,8 +69,8 @@ const Sidebar = () => {
     };
 
     const handleClick = (res) => {
-        setChatId(res.id)
-    }
+        setChatId(res.id);
+    };
 
     return (
         <div className="sidebar">
@@ -102,7 +107,7 @@ const Sidebar = () => {
                 <ChatList
                     dataSource={chats}
                     onClick={(res) => {
-                        handleClick(res)
+                        handleClick(res);
                     }}
                 />
             </div>
