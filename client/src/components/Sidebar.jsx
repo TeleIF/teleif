@@ -15,10 +15,12 @@ import {
     PlusCircleFill as Plus,
     DoorOpenFill as Door,
 } from "react-bootstrap-icons";
-import { useGetChat } from "../ChatContext";
+import { useGetChat, useLoadChat, useSetLoadChat } from "../ChatContext";
 
 const Sidebar = () => {
     const auth = getAuth();
+    const chatLoading = useLoadChat()
+    const setChatLoading = useSetLoadChat()
     const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState("");
     const [chats, setChats] = useState([]);
@@ -45,8 +47,9 @@ const Sidebar = () => {
             list.sort((a, b) => new Date(b.date) - new Date(a.date))
             setChats(list);
         });
+        setChatLoading(false)
         setIsLoading(false);
-    }, [isLoading]);
+    }, [isLoading, chatLoading]);
 
     const createChat = () => {
         if (title) {

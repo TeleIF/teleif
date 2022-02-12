@@ -7,6 +7,7 @@ import {
     PlusCircleFill as Plus,
 } from "react-bootstrap-icons";
 import { auth, db, storage } from "../firebase-config";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import {
     updateDoc,
     collection,
@@ -15,15 +16,16 @@ import {
     getDoc,
     getDocs,
 } from "firebase/firestore";
-import { useChatValue } from "../ChatContext";
+import { useChatValue, useSetLoadChat } from "../ChatContext";
 
 const ChatArea = () => {
-    console.log(auth.currentUser?.displayName)
     const chatId = useChatValue();
+    const setChatLoading = useSetLoadChat()
     const chatsRef = doc(db, "chats", chatId);
     const fileRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [file, setFile] = useState(null);
+    const [url, setUrl] = useState("");
     const [message, setMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
     const [member, setMember] = useState("");
@@ -36,10 +38,37 @@ const ChatArea = () => {
 
     const handleFile = (e) => {
         setFile(e.target.files[0]);
+        console.log(e.target.files[0]);
+    };
+
+    const handleUpload = () => {
+        const storageRef = ref(storage, `/images/${file.name}`);
+        uploadBytes(storageRef, file).then((res) => {
+            getDownloadURL(storageRef).then((currentUrl) => {
+                setUrl(currentUrl);
+                updateDoc(chatsRef, {
+                    messages: arrayUnion({
+                        sender: auth.currentUser?.uid,
+                        text: message,
+                        position: "left",
+                        type: "photo",
+                        title: auth.currentUser?.email.split("@")[0],
+                        date: new Date(),
+                        data: {
+                            uri: [currentUrl],
+                            status: {
+                                loading: 0,
+                                click: true,
+                            },
+                        },
+                    }),
+                });
+            });
+        });
     };
 
     const handleSubmit = () => {
-        if (!file && message) {
+        if (!file) {
             updateDoc(chatsRef, {
                 messages: arrayUnion({
                     sender: auth.currentUser?.uid,
@@ -49,54 +78,24 @@ const ChatArea = () => {
                     title: auth.currentUser?.email.split("@")[0],
                     date: new Date(),
                 }),
-            });
-        } else if (file && message) {
-            updateDoc(chatsRef, {
-                messages: arrayUnion({
-                    sender: auth.currentUser?.uid,
-                    text: message,
-                    position: "left",
-                    type: "photo",
-                    title: auth.currentUser?.email.split("@")[0],
-                    date: new Date(),
-                    data: {
-                        status: {
-                            loading: 100,
-                            click: true,
-                        },
-                        uri: "",
-                    },
-                }),
+                subtitle: message,
+                date: new Date(),
             });
         } else {
-            updateDoc(chatsRef, {
-                messages: arrayUnion({
-                    sender: auth.currentUser?.uid,
-                    position: "left",
-                    type: "photo",
-                    title: auth.currentUser?.email.split("@")[0],
-                    date: new Date(),
-                    data: {
-                        status: {
-                            loading: 100,
-                            click: true,
-                        },
-                        uri: "",
-                    },
-                }),
-            });
+            handleUpload();
         }
-        setIsLoading(true);
+        setChatLoading(true)
+        setIsLoading(true)
         fileRef.current.value = "";
         setFile(null);
         setMessage("");
     };
 
     const handleAdd = () => {
-        updateDoc(chatsRef, {members: arrayUnion(member)})
+        updateDoc(chatsRef, { members: arrayUnion(member) });
 
-        setMember('')
-    }
+        setMember("");
+    };
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter" && canSend) {
@@ -115,24 +114,25 @@ const ChatArea = () => {
 
     useEffect(() => {
         getDoc(chatsRef).then((res) => {
-            const list = []
-            res.data().messages.map(x => {
-                console.log(x)
-                
+            const list = [];
+            res.data().messages.map((x) => {
                 if (auth.currentUser?.uid === x.sender) {
                     list.push({
                         ...x,
-                        position: 'right'
-                    })
+                        date: x.date.toDate(),
+                        position: "right",
+                    });
                 } else {
-                    list.push(x)
+                    list.push({
+                        ...x,
+                        date: x.date.toDate(),
+                    });
                 }
-            })
-            setMessageList(list)
+            });
+            setMessageList(list);
         });
-        alert('hi')
         setIsLoading(false);
-    }, [isLoading]);
+    }, [isLoading, url, chatId]);
 
     return (
         <div className="chat-area vh-100 mh-100">
