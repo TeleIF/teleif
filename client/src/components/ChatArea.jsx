@@ -40,6 +40,33 @@ const ChatArea = () => {
 
     const handleFile = (e) => {
         setFile(e.target.files[0]);
+        console.log(e.target.files[0]);
+    };
+
+    const handleUpload = () => {
+        const storageRef = ref(storage, `/images/${file.name}`);
+        uploadBytes(storageRef, file).then((res) => {
+            getDownloadURL(storageRef).then((currentUrl) => {
+                setUrl(currentUrl);
+                updateDoc(chatsRef, {
+                    messages: arrayUnion({
+                        sender: auth.currentUser?.uid,
+                        text: message,
+                        position: "left",
+                        type: "photo",
+                        title: auth.currentUser?.email.split("@")[0],
+                        date: new Date(),
+                        data: {
+                            uri: [currentUrl],
+                            status: {
+                                loading: 0,
+                                click: true,
+                            },
+                        },
+                    }),
+                });
+            });
+        });
     };
 
     const handleUpload = () => {
